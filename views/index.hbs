@@ -1,0 +1,21 @@
+{{#if user}}
+    <h1>Hello {{user.username}}</h1>
+    <a href="/logout">Logout</a>
+
+    {{#each githubRepos}}
+        <div class="row">
+            <a href="{{html_url}}"><h2>{{name}}</h2></a>
+            <h2>{{description}}</h2>
+            <span>{{created_at}}</span>
+        </div>
+    {{else}}
+        <h2>No repos</h2>
+    {{/each}}
+
+
+{{else}}
+    <h1>Hi!</h1>
+    <a href="/login">Login</a><br>
+{{/if}}
+
+
