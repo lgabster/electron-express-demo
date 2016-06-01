@@ -57,11 +57,12 @@ app.on('ready', function() {
 
     mainWindow = new BrowserWindow({
         width: 1800,
-        height: 800
+        height: 800,
+        //frame: false,
+        //transparent: true
     })
 
     server.on('listening', function() {
-
         mainWindow.loadURL('http://127.0.0.1:8000');
         mainWindow.webContents.openDevTools();
     });

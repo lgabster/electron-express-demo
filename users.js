@@ -1,3 +1,7 @@
+/**
+ * Created by lgabster on 2016.05.31..
+ */
+
 module.exports = [
     {
         id: 1,
