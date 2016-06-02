@@ -1,38 +1,54 @@
 {{#if user}}
-    <h1>Hello {{user.username}}</h1>
-    <a href="/logout">Logout</a>
+    <h1 class="page-header">Hello {{user.username}}</h1>
+    <a class="btn btn-primary" href="/logout">Logout</a>
 
     {{#each githubRepos}}
         <div class="row">
-            <a href="{{html_url}}"><h2>{{name}}</h2></a>
-            <h2>{{description}}</h2>
-            <span>{{created_at}}</span>
+            <div class="panel">
+                <div class="panel-heading">
+                    <a class="" href="{{html_url}}"><h2>{{name}}</h2></a>
+                    <h2>{{description}}</h2>
+                </div>
+                <div class="panel-body">
+                    <span>{{created_at}}</span>
+                </div>
+            </div>
         </div>
     {{else}}
         <h2>No repos</h2>
     {{/each}}
 
 {{else}}
-    <h1>Hi!</h1>
-    <a href="/login">Login</a><br>
+    <div class="row">
+        <div class="col-xs-10">
+            <h1 class="page-header">Electron app with express middleware</h1>
+        </div>
+        <div class="col-xs-2"><a class="btn btn-success pull-right" href="/login">Login</a></div>
+    </div>
+
+    <div class="panel panel-warning">
+        <div class="panel-heading">Sample functions</div>
+        <div class="panel-body">
+            <div class="lead">
+                Open <a href="https://google.com">external link</a> in browser
+            </div>
+            
+            <div class="lead">
+                <button id="basic" class="btn btn-default">Basic Notification</button>
+                <span>Basic notification: default icon, title, and message. </span>
+            </div>
+            
+            <div class="lead">
+                <button id="image" class="btn btn-default">Image Notification</button>
+                <span>Image notification: icon, title, image, and message.(Only available on OS X Yosemite)</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var path = require('path')
+        require(path.join(process.cwd()) + '/public/js/main.js')
+    </script>
 {{/if}}
 
-<br>
-<br>
-<a href="https://google.com">Google</a><br>
-<br>
-<br>
-<div class="sample">
-    <button id="basic">Basic Notification</button>
-    <span>Basic notification: default icon, title, and message. </span>
-</div>
-<div class="sample">
-    <button id="image">Image Notification</button>
-    <span>Image notification: icon, title, image, and message.(Only available on OS X Yosemite)</span>
-</div>
 
-
-<script>
-    var path = require('path')
-    require(path.join(process.cwd()) + '/public/js/main.js')
-</script>
