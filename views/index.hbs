@@ -42,12 +42,32 @@
                 <button id="image" class="btn btn-default">Image Notification</button>
                 <span>Image notification: icon, title, image, and message.(Only available on OS X Yosemite)</span>
             </div>
+
+            <div class="lead">
+                <button id="new-window" class="btn btn-default">Create window</button>
+                <span>Create a new browser window</span>
+            </div>
+
+            <div class="lead">
+                <button id="manage-window" class="btn btn-default">Manage window</button>
+                <span id="manage-window-reply">Modal window size and position</span>
+            </div>
+
+            <div class="lead">
+                <button id="frameless-window" class="btn btn-default">Frameless window</button>
+                <span>This is a window that has no "chrome", such as toolbar, title bar, status bar, etc...</span>
+            </div>
         </div>
     </div>
 
     <script>
         var path = require('path')
-        require(path.join(process.cwd()) + '/public/js/main.js')
+        require(path.join(process.cwd()) + '/public/js/main')
+        require(path.join(process.cwd()) + '/public/js/createWindow')
+        require(path.join(process.cwd()) + '/public/js/manageWindow')
+        require(path.join(process.cwd()) + '/public/js/createFramelessWindow')
+
+
     </script>
 {{/if}}
 

@@ -1,6 +1,7 @@
-const {shell} = require('electron');
-var path = require('path');
-var options = [
+const {shell} = require('electron')
+const path = require('path')
+
+const options = [
   {
     title: "Basic Notification",
     body: "Short message part"
