@@ -23,18 +23,22 @@ let server
 
 var ctrlPath = path.join(__dirname, 'controllers')
 
-var scandir = function (dir) {
+var readControllers = function (dir) {
     console.log('Scanning for controllers ' + dir)
+    
     fs.readdirSync(dir).forEach(function (file) {
         var fullPath = dir + '/' + file
+
         if (file.substr(-3) === '.js') {
             console.log('Loading '+file)
+
             var route = require(fullPath)
+            
             if (route.controller) {
                 route.controller(expressApp)
             }
         } else if(fs.lstatSync(fullPath).isDirectory()) {
-            scandir(fullPath);
+            readControllers(fullPath);
         }
     });
 };
@@ -45,7 +49,7 @@ app.on('ready', function() {
 
     expressApp.set('port', port);
 
-    scandir(ctrlPath);
+    readControllers(ctrlPath);
 
     server = http.createServer(expressApp);
     server.listen(port);

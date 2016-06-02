@@ -22,18 +22,18 @@ module.exports.controller = function(app) {
                     console.log(error)
                 } else {
                     var parsedBody = {}
+              
                     try {
                         parsedBody = JSON.parse(body)
                     } catch(err) {
                         console.log(err)
                     }
-
+              
                     result.githubRepos = parsedBody
                 }
+              
                 res.render('index', result)
-
             })
-
         } else {
             res.render('index')
         }
