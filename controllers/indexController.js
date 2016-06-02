@@ -2,9 +2,29 @@
  * Created by lgabster on 2016.05.31..
  */
 
+const ipc = require('electron').ipcMain
+const dialog = require('electron').dialog
 const request = require('request');
+const BrowserWindow = require('electron').BrowserWindow
 
 module.exports.controller = function(app) {
+
+    ipc.on('open-file-dialog', function (event) {
+        console.log('---1')
+        dialog.showOpenDialog({
+            properties: ['openFile', 'openDirectory']
+        }, function (files) {
+            if (files) event.sender.send('selected-file', files)
+        })
+    })
+
+
+    ipc.on('open-file-dialog-sheet', function (event) {
+        console.log('---2')
+        const window = BrowserWindow.fromWebContents(event.sender)
+        const files = dialog.showOpenDialog(window, { properties: [ 'openFile' ]})
+        if (files) event.sender.send('selected-file', files)
+    })
 
     app.get('/', function(req, res) {
         var result = {}

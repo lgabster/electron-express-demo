@@ -57,6 +57,16 @@
                 <button id="frameless-window" class="btn btn-default">Frameless window</button>
                 <span>This is a window that has no "chrome", such as toolbar, title bar, status bar, etc...</span>
             </div>
+
+            <div class="lead">
+                <button id="show-in-folder" class="btn btn-default">Show in folder</button>
+                <span>This is a window that has no "chrome", such as toolbar, title bar, status bar, etc...</span>
+            </div>
+
+            <div class="lead">
+                <button id="open-file" class="btn btn-default">Open-file</button> <button id="open-file-sheet" class="btn btn-default">Open-file-sheet (only Mac)</button>
+                <span>This is my selected file: <strong id="selected-file"></strong></span>
+            </div>
         </div>
     </div>
 
@@ -66,6 +76,8 @@
         require(path.join(process.cwd()) + '/public/js/createWindow')
         require(path.join(process.cwd()) + '/public/js/manageWindow')
         require(path.join(process.cwd()) + '/public/js/createFramelessWindow')
+        require(path.join(process.cwd()) + '/public/js/showInFolder')
+        require(path.join(process.cwd()) + '/public/js/openFile')
 
 
     </script>
