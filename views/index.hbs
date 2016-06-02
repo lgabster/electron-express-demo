@@ -67,6 +67,11 @@
                 <button id="open-file" class="btn btn-default">Open-file</button> <button id="open-file-sheet" class="btn btn-default">Open-file-sheet (only Mac)</button>
                 <span>This is my selected file: <strong id="selected-file"></strong></span>
             </div>
+
+            <div class="lead">
+                <button id="put-in-tray" class="btn btn-default">Put in tray</button>
+                <span>Put app to system tray menu <b id="tray-countdown"></b></span>
+            </div>
         </div>
     </div>
 
@@ -78,8 +83,7 @@
         require(path.join(process.cwd()) + '/public/js/createFramelessWindow')
         require(path.join(process.cwd()) + '/public/js/showInFolder')
         require(path.join(process.cwd()) + '/public/js/openFile')
-
-
+        require(path.join(process.cwd()) + '/public/js/tray')
     </script>
 {{/if}}
 

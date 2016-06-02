@@ -2,15 +2,14 @@
  * Created by lgabster on 2016.05.31..
  */
 
-const ipc = require('electron').ipcMain
-const dialog = require('electron').dialog
+const path = require('path')
 const request = require('request');
-const BrowserWindow = require('electron').BrowserWindow
+const {BrowserWindow, ipcMain, dialog, app, Menu, Tray} = require('electron')
 
 module.exports.controller = function(app) {
 
-    ipc.on('open-file-dialog', function (event) {
-        console.log('---1')
+    // Dialogs
+    ipcMain.on('open-file-dialog', function (event) {
         dialog.showOpenDialog({
             properties: ['openFile', 'openDirectory']
         }, function (files) {
@@ -18,14 +17,42 @@ module.exports.controller = function(app) {
         })
     })
 
-
-    ipc.on('open-file-dialog-sheet', function (event) {
-        console.log('---2')
+    ipcMain.on('open-file-dialog-sheet', function (event) {
         const window = BrowserWindow.fromWebContents(event.sender)
         const files = dialog.showOpenDialog(window, { properties: [ 'openFile' ]})
         if (files) event.sender.send('selected-file', files)
     })
 
+
+    // System tray icon
+    let appIcon = null
+    ipcMain.on('put-in-tray', function (event) {
+        const iconName = process.platform === 'win32' ? 'globe_icon.png' : 'globe_icon.png'
+        const iconPath = path.join(__dirname, '../', iconName)
+        console.log(iconPath)
+        appIcon = new Tray(iconPath)
+        const contextMenu = Menu.buildFromTemplate([{
+            label: 'Remove',
+            click: function () {
+                event.sender.send('tray-removed')
+                appIcon.destroy()
+            }
+        }])
+        appIcon.setToolTip('Electron Demo in the tray.')
+        appIcon.setContextMenu(contextMenu)
+        
+    })
+
+    ipcMain.on('remove-tray', function () {
+        appIcon.destroy()
+    })
+
+    app.on('window-all-closed', function () {
+        appIcon.destroy()
+    })
+
+
+    // routing
     app.get('/', function(req, res) {
         var result = {}
         if (req.user) {
@@ -42,16 +69,16 @@ module.exports.controller = function(app) {
                     console.log(error)
                 } else {
                     var parsedBody = {}
-              
+
                     try {
                         parsedBody = JSON.parse(body)
                     } catch(err) {
                         console.log(err)
                     }
-              
+
                     result.githubRepos = parsedBody
                 }
-              
+
                 res.render('index', result)
             })
         } else {
