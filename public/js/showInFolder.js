@@ -1,7 +1,12 @@
-const shell = require('electron').shell
-const os = require('os')
-const fileManagerBtn = document.getElementById('show-in-folder')
+((win, ns, undefined) => {
 
-fileManagerBtn.addEventListener('click', function (event) {
-    shell.showItemInFolder(os.homedir())
-})
+    var namespace = win[ns] || {}
+    win[ns] = namespace 
+
+    const fileManagerBtn = document.getElementById('show-in-folder')
+
+    fileManagerBtn.addEventListener('click', (event) => {
+        shell.showItemInFolder(os.homedir())
+    })
+
+})(window, 'electron')

@@ -1,14 +1,18 @@
-const BrowserWindow = require('electron').remote.BrowserWindow
-const path = require('path')
+((win, ns, undefined) => {
 
-const newWindowBtn = document.getElementById('frameless-window')
+    var namespace = win[ns] || {}
+    win[ns] = namespace 
+    
+    const newWindowBtn = document.getElementById('frameless-window')
 
-newWindowBtn.addEventListener('click', function (event) {
-    let win = new BrowserWindow({ 
-        frame: false,
-        //transparent: true 
+    newWindowBtn.addEventListener('click', (event) => {
+        let win = new BrowserWindow({ 
+            frame: false,
+            //transparent: true 
+        })
+        win.on('closed', () => { win = null })
+        win.loadURL(appUrl + '/modal')
+        win.show()
     })
-    win.on('closed', function () { win = null })
-    win.loadURL('http://127.0.0.1:8000/modal')
-    win.show()
-})
+
+})(window, 'electron')

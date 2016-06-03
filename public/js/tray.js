@@ -1,24 +1,28 @@
-const ipc = require('electron').ipcRenderer
+((win, ns, undefined) => {
 
-const trayBtn = document.getElementById('put-in-tray')
-let trayOn = false
+    var namespace = win[ns] || {}
+    win[ns] = namespace 
 
-trayBtn.addEventListener('click', function (event) {
-    console.log('TRAY')
-    if (trayOn) {
+    const trayBtn = document.getElementById('put-in-tray')
+    let trayOn = false
+
+    trayBtn.addEventListener('click', (event) => {
+        if (trayOn) {
+            trayOn = false
+            document.getElementById('tray-countdown').innerHTML = ''
+            ipcRenderer.send('remove-tray')
+        } else {
+            trayOn = true
+            const message = 'Click tray button again to remove'
+            document.getElementById('tray-countdown').innerHTML = message
+            ipcRenderer.send('put-in-tray')
+        }
+    })
+
+    // Tray removed from context menu on icon
+    ipcRenderer.on('tray-removed', () => {
         trayOn = false
         document.getElementById('tray-countdown').innerHTML = ''
-        ipc.send('remove-tray')
-    } else {
-        trayOn = true
-        const message = 'Click tray button again to remove'
-        document.getElementById('tray-countdown').innerHTML = message
-        ipc.send('put-in-tray')
-    }
-})
+    })
 
-// Tray removed from context menu on icon
-ipc.on('tray-removed', function () {
-    trayOn = false
-    document.getElementById('tray-countdown').innerHTML = ''
-})
+})(window, 'electron')

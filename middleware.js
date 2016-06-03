@@ -26,8 +26,6 @@ module.exports = function(app) {
         layoutsDir: `${__dirname}/views/layouts`
     })
 
-    console.log(`${__dirname}/views/layouts`)
-
     app.engine('hbs', hbs.engine)
     app.set('view engine', 'hbs')
     app.set('views', `${__dirname}/views`)
@@ -38,7 +36,11 @@ module.exports = function(app) {
     app.use(cookieParser());
 
     //passport
-    app.use(session({ secret: 'Virg0HomaWork' }));
+    app.use(session({ 
+        secret: 'Virg0HomaWork',
+        resave: true,
+        saveUninitialized: true
+    }));
     app.use(passport.initialize());
     app.use(passport.session());
 

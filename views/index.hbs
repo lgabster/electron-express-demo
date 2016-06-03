@@ -75,16 +75,14 @@
         </div>
     </div>
 
-    <script>
-        var path = require('path')
-        require(path.join(process.cwd()) + '/public/js/main')
-        require(path.join(process.cwd()) + '/public/js/createWindow')
-        require(path.join(process.cwd()) + '/public/js/manageWindow')
-        require(path.join(process.cwd()) + '/public/js/createFramelessWindow')
-        require(path.join(process.cwd()) + '/public/js/showInFolder')
-        require(path.join(process.cwd()) + '/public/js/openFile')
-        require(path.join(process.cwd()) + '/public/js/tray')
-    </script>
+    <script src='/js/includes.js'></script>
+    <script src='/js/notification.js'></script>
+    <script src='/js/createWindow.js'></script>
+    <script src='/js/manageWindow.js'></script>
+    <script src='/js/createFramelessWindow.js'></script>
+    <script src='/js/showInFolder.js'></script>
+    <script src='/js/openFile.js'></script>
+    <script src='/js/tray.js'></script>
 {{/if}}
 
 
