@@ -4,9 +4,9 @@
 
 const request = require('request');
 
-module.exports.controller = function(app) {
+module.exports.controller = (app) => {
 
-    app.get('/open', function(req, res) {
+    app.get('/open', (req, res) => {
         
     })
 }

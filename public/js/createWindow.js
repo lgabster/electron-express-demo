@@ -6,11 +6,10 @@
 	const newWindowBtn = document.getElementById('new-window')
 
 	newWindowBtn.addEventListener('click', (event) => {
-	    const modalPath = appUrl + '/modal'
 	    let win = new BrowserWindow({ width: 400, height: 320 })
-	    win.webContents.openDevTools();
+	    
 	    win.on('closed', () => { win = null })
-	    win.loadURL(modalPath)
+	    win.loadURL(appUrl + '/modal')
 	    win.show()
 	})
 

@@ -11,7 +11,7 @@
             //transparent: true 
         })
         win.on('closed', () => { win = null })
-        win.loadURL(appUrl + '/modal')
+        win.loadURL(appUrl + '/modal?closable=true')
         win.show()
     })
 

@@ -4,9 +4,12 @@
 
 const request = require('request');
 
-module.exports.controller = function(app) {
+module.exports.controller = (app) => {
 
-    app.get('/modal', function(req, res) {
-        res.render('partials/modal')
+    app.get('/modal', (req, res) => {
+        result = {
+            closable: req.query && req.query.closable
+        }
+        res.render('partials/modal', result)
     })
 }

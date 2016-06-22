@@ -35,12 +35,9 @@
     }
 
     $(document).ready(() => {
-        console.warn('Run app.js')
-
         document.getElementById('basic').addEventListener('click', doNotify)
-        document.getElementById('image').addEventListener('click', doNotify)    
-        openExternalLink(document.querySelectorAll('a[href^="http"]'))    
+        //document.getElementById('image').addEventListener('click', doNotify)
     })
-    
+
 })(window, 'electron')
 

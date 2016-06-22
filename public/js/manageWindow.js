@@ -21,5 +21,4 @@
             manageWindowReply.innerText = message
         }
     })
-
 })(window, 'electron')

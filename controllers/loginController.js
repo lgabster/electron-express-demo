@@ -4,9 +4,9 @@
 
 const passport = require('passport');
 
-module.exports.controller = function(app) {
+module.exports.controller = (app) => {
    
-    app.get('/login', function(req, res) {
+    app.get('/login', (req, res) => {
         res.render('login')
     })
     
@@ -14,12 +14,12 @@ module.exports.controller = function(app) {
         passport.authenticate('local', {
             failureRedirect: '/login',
         }),
-        function(req, res) {
+        (req, res) => {
             res.redirect('/');
         }
     );
 
-    app.get('/logout', function(req, res){
+    app.get('/logout', (req, res) => {
         req.logout();
         res.redirect('/');
     });

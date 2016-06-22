@@ -1,1 +1,14 @@
 <h1>I'm a modal!!!</h1>
+
+{{#if closable}}
+    <div class="lead">
+        <button id="close-btn" class="btn btn-default">Close window</button>
+    </div>
+    <video data-component="camera"></video>
+    <script>
+        document.getElementById("close-btn").addEventListener("click", function (e) {
+            var window = remote.getCurrentWindow();
+            window.close();
+        });
+    </script>
+{{/if}}

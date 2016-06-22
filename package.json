@@ -18,6 +18,7 @@
   "author": "lgabster",
   "license": "MIT",
   "devDependencies": {
+    "devtron": "^1.2.1",
     "electron-prebuilt": "^1.2.0"
   },
   "dependencies": {

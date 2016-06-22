@@ -1,7 +1,10 @@
-const {shell, ipcRenderer} = require('electron')
-const BrowserWindow = require('electron').remote.BrowserWindow
+const {app, shell, ipcRenderer} = require('electron')
+const remote = require('electron').remote
 
-const appUrl = require('electron').remote.getGlobal('appUrl')
+const {Menu, MenuItem} = remote;
 
 const path = require('path')
 const os = require('os')
+
+const BrowserWindow = remote.BrowserWindow
+const appUrl = remote.getGlobal('appUrl')

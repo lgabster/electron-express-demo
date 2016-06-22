@@ -2,10 +2,7 @@
  * Created by lgabster on 2016.05.31..
  */
 
-const electron = require('electron')
-const app = electron.app
-const remote = electron.remote
-const BrowserWindow = electron.BrowserWindow
+const {app, remote, BrowserWindow, crashReporter} = require('electron')
 
 const express = require('express')
 const expressApp = express()
@@ -42,27 +39,26 @@ var readControllers = (dir) => {
                 route.controller(expressApp)
             }
         } else if(fs.lstatSync(fullPath).isDirectory()) {
-            readControllers(fullPath);
+            readControllers(fullPath)
         }
-    });
-};
-
+    })
+}
 
 app.on('ready', () => {
 
     middleware(expressApp)
 
-    expressApp.set('port', port);
+    expressApp.set('port', port)
 
-    readControllers(ctrlPath);
+    readControllers(ctrlPath)
 
-    server = http.createServer(expressApp);
-    server.listen(port);
+    server = http.createServer(expressApp)
+    server.listen(port)
 
     server.on('error', (error) => {
-        console.error(error);
-        process.exit(1);
-    });
+        console.error(error)
+        process.exit(1)
+    })
 
     mainWindow = new BrowserWindow({
         width: 1800,
@@ -72,9 +68,9 @@ app.on('ready', () => {
     })
 
     server.on('listening', () => {
-        mainWindow.loadURL(appUrl);
-        mainWindow.webContents.openDevTools();
-    });
+        mainWindow.loadURL(appUrl)
+        mainWindow.webContents.openDevTools()
+    })
 
     mainWindow.on('closed', () => {
         mainWindow = null
@@ -86,11 +82,5 @@ app.on('ready', () => {
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit()
-    }
-})
-
-app.on('activate', () => {
-    if (mainWindow === null) {
-        createWindow()
     }
 })

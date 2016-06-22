@@ -26,7 +26,7 @@
         <div class="col-xs-2"><a class="btn btn-success pull-right" href="/login">Login</a></div>
     </div>
 
-    <div class="panel panel-warning">
+    <div class="panel panel-success">
         <div class="panel-heading">Sample functions</div>
         <div class="panel-body">
             <div class="lead">
@@ -38,10 +38,12 @@
                 <span>Basic notification: default icon, title, and message. </span>
             </div>
             
+            <!--
             <div class="lead">
                 <button id="image" class="btn btn-default">Image Notification</button>
                 <span>Image notification: icon, title, image, and message.(Only available on OS X Yosemite)</span>
             </div>
+            -->
 
             <div class="lead">
                 <button id="new-window" class="btn btn-default">Create window</button>
@@ -75,14 +77,36 @@
         </div>
     </div>
 
-    <script src='/js/includes.js'></script>
+    <div class="panel panel-warning">
+        <div class="panel-heading">Media access</div>
+        <div class="panel-body">
+            <div class="lead">
+                <div class="btn-group">
+                    <button class="btn btn-default" data-component="video-start">Start Video</button>
+                    <button class="btn btn-default" data-component="video-pause" disabled>Pause Video</button>
+                    <button class="btn btn-default" data-component="video-stop" disabled>Stop Video</button>
+                </div>
+                <div>
+                    <video data-component="camera" width="320" height="240"></video>
+                </div>
+                <button class="btn btn-default" data-component="take-photo">Take snapshot</button>
+                <div>
+                    <canvas data-component="photo" width="320" height="240"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src='/js/notification.js'></script>
+    <script src='/js/messages.js'></script>
     <script src='/js/createWindow.js'></script>
     <script src='/js/manageWindow.js'></script>
     <script src='/js/createFramelessWindow.js'></script>
     <script src='/js/showInFolder.js'></script>
     <script src='/js/openFile.js'></script>
     <script src='/js/tray.js'></script>
+    <script src='/js/camera.js'></script>
+    <script src='/js/menu.js'></script>
 {{/if}}
 
 
